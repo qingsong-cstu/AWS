@@ -5,7 +5,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '10'))
   }
   environment {
-    IMAGE_NAME = "<your-dockerhub-username>/eb-express"
+    IMAGE_NAME = "<PUT_YOUR_DOCKERHUB_USERNAME_HERE>/eb-express"
     IMAGE_TAG  = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
   }
   stages {
