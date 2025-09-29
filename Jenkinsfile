@@ -5,7 +5,7 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '10'))
   }
   environment {
-    IMAGE_NAME = "22471264/eb-express"
+    IMAGE_NAME = "22471264/eb-express" 
     IMAGE_TAG  = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
   }
   stages {
@@ -14,7 +14,12 @@ pipeline {
     }
 
     stage('Install & Test (Node 16)') {
-      agent { docker { image 'node:16-alpine' args '-v $HOME/.npm:/root/.npm' } }
+      agent {
+        docker {
+          image 'node:16-alpine'
+          args '-v $HOME/.npm:/root/.npm'
+        }
+      }
       steps {
         sh 'node -v && npm -v'
         sh 'npm ci'
@@ -23,7 +28,11 @@ pipeline {
     }
 
     stage('Dependency Scan (fail on HIGH)') {
-      agent { docker { image 'node:16-alpine' } }
+      agent {
+        docker {
+          image 'node:16-alpine'
+        }
+      }
       steps {
         sh 'npm ci --prefer-offline --no-audit'
         sh 'npm audit --audit-level=high'
