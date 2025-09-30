@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Run Unit Tests') {
             steps {
-                // Run your test suite
+                // Run the test suite
                 sh 'npm test'
             }
         }
