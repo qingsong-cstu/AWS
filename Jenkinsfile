@@ -5,7 +5,7 @@ pipeline {
     }
 
     environment {
-        // Set the Docker image name/tag
+        // Set the Docker image name and tag
         IMAGE_NAME = 'chiamintwts/assignment2_22165266:latest'
     }
 
